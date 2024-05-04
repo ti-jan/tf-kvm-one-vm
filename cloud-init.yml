@@ -1,0 +1,28 @@
+#cloud-config
+
+# Desativa o login de root via SSH
+ssh_pwauth: false
+disable_root: false
+
+users:
+  - name: gean
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo, users
+    shell: /bin/bash
+    ssh-authorized-keys:
+      - ${file("github.pub")}
+
+# Desativa o login por senha para todos os usuários (incluindo root), permitindo apenas SSH com chave
+chpasswd:
+  list: |
+    root:root
+  expire: False
+
+package_upgrade: true
+
+packages:
+  - qemu-guest-agent
+
+runcmd:
+  - [ sh, -c, "echo 'PermitRootLogin prohibit-password' >> /etc/ssh/sshd_config" ]
+  - systemctl restart sshd

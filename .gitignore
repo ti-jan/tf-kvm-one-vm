@@ -1,16 +1,43 @@
-# Node rules:
-## Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
+# Arquivos de estado local do Terraform
+*.tfstate
+*.tfstate.*
+tfstate.*
 
-## Dependency directory
-## Commenting this out is preferred by some people, see
-## https://docs.npmjs.com/misc/faq#should-i-check-my-node_modules-folder-into-git
-node_modules
+# Arquivos de log
+crash.log
+crash.*.log
 
-# Book build output
-_book
+# Arquivos de configuração do diretório .terraform
+.terraform/*
+!/.terraform/*.tflock
 
-# eBook build output
-*.epub
-*.mobi
-*.pdf
+# Ignore arquivos de variáveis sensíveis
+#*.tfvars
+*.auto.tfvars
+secrets.auto.tfvars
+
+# Ignore arquivos de saída plan
+*.tfplan
+*.tfplan.*
+
+# Ignore arquivos de override
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore arquivos CLI
+.terraformrc
+terraform.rc
+
+# Pastas do Git
+.git/
+.gitignore
+
+# Arquivos temporários do sistema e do editor
+*.bak
+*.swp
+*.tmp
+
+# Diretórios temporários do sistema
+tmp/
